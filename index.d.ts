@@ -1,4 +1,4 @@
-/**
+/*
 * @license Apache-2.0
 *
 * Copyright (c) 2023 The Stdlib Authors.
@@ -16,28 +16,45 @@
 * limitations under the License.
 */
 
-'use strict';
+// TypeScript Version: 4.1
+
+/// <reference types="https://cdn.jsdelivr.net/gh/stdlib-js/types@esm/index.d.ts"/>
+
+import { Collection, AccessorArrayLike } from '@stdlib/types/array';
 
 /**
-* Group element indices as arrays associated with distinct keys.
+* Object key.
+*/
+type Key = string | symbol | number;
+
+/**
+* Interface describing returned group results.
+*/
+interface IndicesResults<K, T> {
+	/**
+	* Object properties.
+	*/
+	[key: K]: Array<T>;
+}
+
+
+/**
+* Groups element indices as arrays associated with distinct keys.
 *
-* @module @stdlib/array-base-group-indices
+* @param x - input array
+* @param groups - array defining which group an element in the input array belongs to
+* @returns group results
 *
 * @example
-* var groupIndices = require( '@stdlib/array-base-group-indices' );
-*
 * var x = [ 'beep', 'boop', 'foo', 'bar' ];
 * var groups = [ 'b', 'b', 'f', 'b' ];
 *
 * var out = groupIndices( x, groups );
 * // returns { 'b': [ 0, 1, 3 ], 'f': [ 2 ] }
 */
-
-// MODULES //
-
-var main = require( './main.js' );
+declare function groupIndices<T = unknown>( x: Collection<T> | AccessorArrayLike<T>, groups: Collection<Key> | AccessorArrayLike<Key> ): IndicesResults<Key, number>;
 
 
 // EXPORTS //
 
-module.exports = main;
+export = groupIndices;
